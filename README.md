@@ -620,7 +620,7 @@ public class Strings {
 
   [GeeksForGeeks][31]
 
-* What are the differences between **Exceptions** and an **Errors** ? Are there any similitudes ?
+* What are the differences between **Exceptions** and an **Errors** ? Are there any similitudes?
 
   > Exceptions and Errors are both one subclasse of Throwable class. The error indicates a problem that
   > mainly occurs due the lack of system resources and our application should not catch these types of 
@@ -688,9 +688,51 @@ public class Strings {
 ## Algorithms and Data Structures / Collections / Generics
 
 * Explain the **O(n) Notation** (Big O).
-* How does a **Stack** data-structure works ? Are there any standard Java Stack implementations ?
+
+  > Big O time is the language and metric used to describe the efficiency of algorithms.
+  > O(n) is linear time complexity once the rate of growth scales in direct proposition to the input.
+  > For **n** inputs, the algorithm might perform n operations.
+
+  [jarednielsen.com][37]
+
+* How does a **Stack** data-structure works ? Are there any standard Java Stack implementations?
+
+  > A Stack is an Abstract Data Type (ADT), commonly used in most programming languages. This is a 
+  > LIFO data structure. LIFO stands for Last-in-first-out. The element which is placed last is accessed
+  > first. Stack have two operations to represent this, **push()** pushing an element on the Stack and 
+  > **pop()** removing an element from the Stack.
+  >
+  > There is a Java implementation of Stack under java.utils package.
+
+  [tutorialspoint][38]
+
 * Recursively calculate the sum of numbers from a `List<Integer>` (don't use for/do/while loops).
+
+  >   ```java
+  >   public static int summer(List<Integer> list) {
+  >       if (list.size() == 0) {
+  >           return 0;
+  >       } else if (list.size() == 1) {
+  >           return list.get(0);
+  >       } else {
+  >           int left = summer(list.subList(0, list.size()/2));
+  >           int right = summer(list.subList(list.size()/2, list.size()));
+  >           return left + right;
+  >       }
+  >   }
+  >   ``` 
+  
+  [stackoverflow][39]
+
 * Why is not possible to use primitives as generic types ?
+
+  > Generics in Java are an entirely compile-time construct, the compiler turns all generic 
+  > uses into casts to the right type. So, anything that is used as generics has to be converted
+  > to Object and the primitive types aren't, that is the reason why primitives can't be used in
+  > generics.
+
+  [stackoverflow][40]
+
 * Explain the concept of **Type Erasure**.
 * Explain the following data structures: *List*, *Map*, *Queue*, *Set*.
 * Name a few implementations for each interface:
@@ -1030,3 +1072,7 @@ YES
 [34]: https://itblackbelt.wordpress.com/2015/02/17/checked-vs-unchecked-exception-in-java-example/   "Checked vs. Unchecked Exception in Java Example"
 [35]: https://itblackbelt.wordpress.com/2015/02/17/checked-vs-unchecked-exception-in-java-example/   "Checked vs. Unchecked Exception in Java Example"
 [36]: https://www.geeksforgeeks.org/annotations-in-java/   "Annotations in Java"
+[37]: https://jarednielsen.com/big-o-linear-time-complexity/   "Big O Linear Time Complexity"
+[38]: https://www.tutorialspoint.com/data_structures_algorithms/stack_algorithm.htm   "Data Structure and Algorithms - Stack"
+[39]: https://stackoverflow.com/a/8927360   "Sum of List<Integer> recursively"
+[40]: https://stackoverflow.com/a/2721557   "Why don't Java Generics support primitive types?"
