@@ -31,9 +31,9 @@
    > Heap memory is the common for all the threads, the data stored in the heap is accessible to all the threads 
    > running on JVM.
    > #####STACK
-   > Java Stack is the memory used by the JVM threads to store the thread specific data. Stack memory is not shared among 
-   > all the threads and it is created for each thread separately. Any data related to 
-   > method like local variables, object references to heap are stored in the stack memory.
+   > Java Stack is the memory used by the JVM threads to store the thread specific data. Stack memory is not shared
+   > among all the threads and it is created for each thread separately. Any data related to method like local
+   > variables, object references to heap are stored in the stack memory.
    
    [JAVABEAT][1]
      
@@ -79,7 +79,8 @@
     
 * What is *auto-boxing/unboxing* ?
 
-   > Auto-boxing is converting a primitive value into an object of the corresponding wrapper class. Unboxing is converting 
+   > Auto-boxing is converting a primitive value into an object of the corresponding wrapper class. Unboxing is
+   > converting 
    > an object of a wrapper type to its corresponding primitive.
    
    [GeeksforGeeks][7]
@@ -103,8 +104,8 @@
    > }
    > ```
    >
-   > **Explicit** (Narrowing) casting is done manually converting a larger type to a smaller size type by placing the type
-   > in parentheses in front of the value, for example:
+   > **Explicit** (Narrowing) casting is done manually converting a larger type to a smaller size type by placing the
+   > type in parentheses in front of the value, for example:
    > 
    > double -> float -> long -> int -> char -> short -> byte
    >
@@ -199,8 +200,8 @@
 
 * What is a **constructor**?
 
-   > A constructor in Java is a special method that is used to initialize objects. The constructor is called when an object
-   > of a class is created. It can be used to set initial values for object attributes.
+   > A constructor in Java is a special method that is used to initialize objects. The constructor is called when an
+   > object of a class is created. It can be used to set initial values for object attributes.
    >
    > ```java
    > public class MyClass {
@@ -253,8 +254,8 @@
   > invoked by an object of the parent class or by an object of the child class.
   >
   > **Overloading**, OOP polymorphism concept that a single method may perform different functions depending on the 
-  > context in which it is called. That is, a single method name might work in different ways depending on what arguments
-  > are passed to it.
+  > context in which it is called. That is, a single method name might work in different ways depending on what
+  > arguments are passed to it.
                                                         
   [Stackify][19]
 
@@ -543,11 +544,14 @@ public class Strings {
 ```
 * What is a *Java Interface* ?
 
-   > Like a class, an interface can have methods and variables, but the methods declared in an interface are by default abstract (only method signature, no body).  
+   > Like a class, an interface can have methods and variables, but the methods declared in an interface are by default
+   > abstract (only method signature, no body).  
    >  
-   >  - Interfaces specify what a class must do and not how. It is the blueprint of the class.
-   >  - An Interface is about capabilities like a Player may be an interface and any class implementing Player must be able to (or must implement) move(). So it specifies a set of methods that the class has to implement.
-   >  - If a class implements an interface and does not provide method bodies for all functions specified in the interface, then the class must be declared abstract.
+   > - Interfaces specify what a class must do and not how. It is the blueprint of the class.
+   > - An Interface is about capabilities like a Player may be an interface and any class implementing Player must be
+   > able to (or must implement) move(). So it specifies a set of methods that the class has to implement.
+   > - If a class implements an interface and does not provide method bodies for all functions specified in the
+   > interface, then the class must be declared abstract.
 
    [GeeksforGeeks][28]
 
@@ -557,7 +561,8 @@ public class Strings {
 
 * What is a *Java Abstract Class* ?
 
-   > A class which is declared as `abstract` is known as an abstract class. It can have abstract and non-abstract methods.
+   > A class which is declared as `abstract` is known as an abstract class. It can have abstract and non-abstract
+   > methods.
    > It needs to be extended and its method implemented. It cannot be instantiated.
 
   [javaTpoint][29]
@@ -724,7 +729,7 @@ public class Strings {
   
   [stackoverflow][39]
 
-* Why is not possible to use primitives as generic types ?
+* Why is not possible to use primitives as generic types?
 
   > Generics in Java are an entirely compile-time construct, the compiler turns all generic 
   > uses into casts to the right type. So, anything that is used as generics has to be converted
@@ -734,15 +739,90 @@ public class Strings {
   [stackoverflow][40]
 
 * Explain the concept of **Type Erasure**.
+
+  > Generics were introduced to the Java language to provide tighter checks at compile time
+  > and to support generic programming. But an important constraint was the need for compatibility
+  > with previous versions of Java, generic code had to be compatible with preexisting, nongeneric
+  > code. To achieve that what type erasure does is replacing type parameters with their bound type,
+  > which is Object if no explicit bound is specified, and then applying the appropriate casts (as
+  > determined by the type arguments) to mantain type compatibility with the types specified by the  
+  > type arguments.
+
+  [stackoverflow][41]
+
 * Explain the following data structures: *List*, *Map*, *Queue*, *Set*.
+
+  > #### List
+  > List in Java provides the facility to mantain the ordered collection the index-based methods to insert,
+  > update, delete and search the elements. It can have the duplicate elements also. We can also store the
+  > null in the list.
+  >
+  > The list interface is found in the **java.util** package and inherits the Collection interface. It is a 
+  > factory of ListIterator interface. Through the ListIterator, we can iterate the list in forward and backward
+  > directions. The implementation classes of List interface are ArrayList, LinkedList, Stack and Vector.
+  >
+  > #### Map
+  > A map contains values on the basis of key, i.e. key and value pair. Each key and value pair is know as an
+  > entry A Map contains unique keys.
+  > A map is useful if you have to search, update or delete elements on the bases of a key. 
+  > 
+  >         +++++++                                     +++++++++++++
+  >         | Map | <  * * * * * * * *                  | Interface |
+  >         +++++++                   *                 +++++++++++++
+  >            ^                      *                  
+  >            |                      *                 +-------+                       
+  >            |                      *                 | Class |                       
+  >      ++++++++++++++         +------------+          +-------+
+  >      | Sorted Map |         | Sorted Map |      
+  >      ++++++++++++++         +------------+              ^       
+  >            ^                      ^                     * implements
+  >            *                      |                     *      
+  >            *                      |                         
+  >       +----------+         +---------------+            ^
+  >       | Tree Map |         | LinkedHashMap |            | extends
+  >       +----------+         +---------------+            |
+  >                                    
+  > A map doesn't allow duplicate keys, but you can have duplicate values. HashMap and LinkedHashMap allow                                              
+  > null keys and values, but TreeMap doesn't allow any null key or value.                                                                          
+  > A Map can't be traversed, so you need to convert it into Set using keySet() or entrySet() method.                                              
+  >                                   
+  >   | Class  | Description  |
+  >   |---|---|
+  >   | HashMap  | HashMap is the implementation of Map, but it doesn't maintain any order.  |
+  >   | LinkedHashMap  | LinkedHashMap is the implementation of Map. It inherits HashMap class. It maintains insertion order.  |
+  >   | TreeMap  | TreeMap is the implementation of Map and SortedMap. It maintains ascending order.  |
+  >
+  > #### Queue
+  > The queue interface is provided in **java.util** package and it implements the Collection interface. The queue
+  > implements FIFO i.e. First In First Out. This means that the element entered first are the ones that are deleted
+  > first.
+  >                                 
+  > A collection designed for holding elements prior to processing. Besides basic Collection operations, queues provide
+  > additional insertion, extraction, and inspection operations. Each of these methods exists in two forms: one throws 
+  > an exception if the operation fails, the other returns a special value (either null or false, depending on the
+  > operation). The latter from of the insert operation is designed specifically for use with capacity-restricted Queue
+  > implementations, insert, operations cannot fail.
+  >       
+  > #### Set
+  > A collection that constains no duplicate elements. The Set interface contains only methods inherited from Collection
+  > and adds the restriction that duplicate elements are prohibited.
+  > Set also adds a stronger contract on the behavior of the equals and hashCode operations, allowing Set instances to
+  > be compared meaningfully even if their implementation types differ.       
+                                                                                                     
+  [javaTpoint][42]
+  [javaTpoint][43]
+  [javaTpoint][44]
+  [javaTpoint][45]
+  [tutorialspoint][46]
+
 * Name a few implementations for each interface:
 
-| List<T>    | Set<T>     | Map<K,V>     | Queue<T>  |
-| ------  | ------  | ------  | ------ |
-|         |         |         |        |
-|         |         |         |        |
-|         |         |         |        |
-|         |         |         |        |
+  > | List<T>    | Set<T>        | Map<K,V>      | Queue<T>           |
+  > | ---------- | -------       | ------------- | ------------------ |
+  > | ArrayList  | HashSet       | HashMap       | AbstractQueue      |
+  > | LinkedList | TreeSet       | TreeMap       | ArrayBlockingQueue |
+  > |            | LinkedHashSet | LinkedHashMap | ArrayDeque         |
+  > |            |               |               |                    |
 
 * What is the output if we run the following code:
 ```java
@@ -768,16 +848,156 @@ public class HashTest {
     }
 }
 ```
+
+  > // 3
+
 * Explain how a **HashMap** is implemented. What is the relationship between *equals()* and *hashCode()*.
+
+  > Hash table based implementation of the Map interface. This implementation provides all of the optional map
+  > operations, and **permits null values and the null key**. (The HashMap class is roughly equivalent to HashTable,
+  > except that it is unsynchronized and permits nulls). This class makes no garantees as to the order of the map in
+  > particular, it does not guarantee that the order will remain constant over time.
+  > 
+  > There is a contract between *equals()* and *hashCode()*
+  > - If two objects are equal, then they must have the same hash code.
+  > - If two objects have the same hash code, they may or may not be equal.
+
+  [programcreek][47]
+
 * What are *hash collisions* ?
+
+  > A collision occurs when two different keys have the same hashcode, which can happen because two unequal objects in
+  > java can have the same hashcode.
+                                    
+  [Javarevisited][48]
+
 * What are the operations for which a **LinkedList** is more efficient than an **ArrayList** ?
+
+  > "ArrayList should be used where more search operations are required, and LinkedList should be used where more insert
+  > and delete operation is needed".
+  >
+  > A LinkedList is more efficient than an ArrayList inserting and deleting.
+  > A LinkedList is more performant when inserting a value because it only need to find the index where we want to add
+  > the value and rearranging pointers of underlying DoubleLinkedList. In another hand when inserting a value in an
+  > ArrayList it is needed to:
+  > 
+  > - Check whether the underlying array us already full or not.
+  > - If the array is full then it copies the data from the old array to a new array (size double than an old array).
+  > - After that, starting from the given index, shift values by one to create space for the new value.
+  > - Then add the value at given index.
+  > 
+  > When removing a value the difference between an ArrayList and a LinkedList is that, when removing an element from a
+  > LinkedList we just need to modify pointers which is O(1) complexity, but in ArrayList, we need to shift all elements
+  > after the index of the removed value to fill the gap created.
+
+  [DZone][49]
+
 * What is the difference between **CopyOnWriteArrayList**, **Vector** and **ArrayList** ?
+
+  > | **CopyOnWriteArrayList**                                                           | **Vector**                                                                         | **ArrayList**                                                                                                      |
+  > |------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+  > | synchronized                                                                       | synchronized                                                                       | not synchronized                                                                                                   |
+  > | thread safe                                                                        | thread safe                                                                        | not thread safe                                                                                                    |
+  > | not a legacy                                                                       | legacy                                                                             | not a legacy                                                                                                       |
+  > | slow has some overhead in thread management/ locking etc                           | slow has some overhead in thread management/ locking etc                           | fast                                                                                                               |
+  > | fail-safe and it will never throw ConcurrentModificationException during iteration | fail-safe and it will never throw ConcurrentModificationException during iteration | fail-fast and ArrayList throws ConcurrentModificationException if concurrent modification happens during iteration |
+
+  [tutorialspoint][50]
+  [javaTpoint][51]
+  [HowToDoInJava][52]
+
 * What are the key differences between a **HashMap** and **ConcurrentHashMap** ?
+
+  > - **HashMap is non-synchronized** in nature i.e. HashMap is **not Thread-safe** whereas **ConcurrentHashMap is
+  > Thread-safe** in nature. 
+  >
+  > - **HashMap performance is relatively high** because it is **non-synchronized** in nature and **any number of
+  > threads can perform simultaneouly**. But **ConcurrentHashMap performance is low** sometimes becuse **Threads are
+  > required to wait on ConcurrentHashMap**.
+  >
+  > - While one thread is Iterating the HashMap object if other thread try to add/modify the contents of object them we
+  > will get Run-time exception saying **ConcurrentModificationException**. Whereas in ConcurrentHashMap we wont get any
+  > exception while performing any modification.
+  
+  [GeeksForGeeks][53] 
+
 * How does a **WeakHashMap** works ? What are the main differences between a **WeakHashMap** and a **HashMap** ?
+
+  > Hash table based implementation of the Map interface, with weak keys. An entry in a WeakHashMao with weak keys.
+  > An entry in a WeakHashMap will automatically be removed when its key is no longer in ordinary use.
+  >
+  > Important differences between HashMap and WeakHashMap:
+  >
+  > - **Strong vs Weak References**: **Weak Reference** Objects are not the default type/class of Reference Object and
+  > they should be explicitly specific while using them. This type of reference is used in WeakHashMap to reference the
+  > entry objects. **Strong References**: This is default type/class of Reference Object. Any object which has an active
+  > strong reference are not eligible for garbage collection. In HashMap, key objects have strong reference.
+  >  
+  > - **Role of Garbage Collector**: Garbage Collected: In HashMap, entry object (entry object stores key-value pairs)
+  > is not eligible for garbage Collecion i.e. HashMap is dominant over Garbage Collector.
+  >
+  > - **Clone method Implementation**: HashMap implements Cloneable interface.
+  > WeakHashMap does not implement Cloneable interface, it only implements Map interface. Hence, there is no clone()
+  > method in the WeakHashMap class.
+
+  [Oracle][54]
+  [Baeldung][55]
+  [GeeksForGeeks][56]
+
 * Does a **Set** accepts `null` as an element ?
+
+  > Yes, at most one null element once Set does not accept duplicate values.
+
+  [Oracle][57]
+  
 * What is the difference between an `Iterator` and `ListIterator` ?
+
+  > **Iterators** are used in Collection framework in Java to **retrieve elements one by one**. It can be applied to any
+  > Collection object. By using Iterator we can **perform both read and remove operations**. Iterator must be used
+  > whenever we want to enumerate elements in all collections framework implemented interfaces like **Set, List, Queue,
+  > Deque** and also in all implemented classes of Map interface. **Iterator is the only cursos available for entire
+  > collection framework**.
+  >
+  > It is **only applicable for List collection implemented** classes like **arraylist, linkedlist** etc. It **provides
+  > bi-directional iteration**. ListIterator must be used when we want to enumerate elemets of List. **This cursor has
+  > more functionality (methods) than iterator**.
+  > 
+  > Differences:
+  > 
+  > | Iterator  | ListIterator  |
+  > |---|---|
+  > | Can traverse elements present in Collection only in the forward direction  | Can traverse elements present in Collection both in forward and backward direction  |
+  > | Helps to traverse Map, List and Set  | Can only traverse List  |
+  > | Indexes cannot be obtained by using Iterator  | It has methods like nextIndex() and previousIndex() to obtain indexes of elements at any time while traversing list  |
+  > | Cannot modify or replace elements present in Collection  | We can modify or replace elements with the help of Set(E e)  |
+  > | Cannot add elements and it throws ConcurrentModificationException  | Can easily add elements to a collection ar any time  |
+  > | Certain methds of Iterator are next(), remove() and hasNext()  | Certain methods of listIterator are next(), previous(), hasNext(), add(E e)  | 
+
+  [Oracle][58]
+
 * Are there any **Immutable** Collection Classes ?
+
+  > No there are not any Immutable classes in the Collection framework.
+
+  [codefx.org][59]
+
 * What is a **RingBuffer** ?
+
+  > Ring Buffer (or Circular Buffer) is a **bounded circular data structure that is used for buffering data between two or
+  > more threads**. As we keep writing to a ring buffer, it wraps around as it reaches the end. 
+  >
+  > How it works:
+  > 
+  > A Ring Buffer is implemented using a **fixed-size array** that wraps around at the boundaries.
+  >
+  > Apart from the array, it keeps track of three things:
+  >
+  > - the next available slot in the buffer to insert an element.
+  > - the next unread element in the buffer
+  > - and the end of the array- tho the start of the array
+
+  [Baeldung][60]
+
 * What happens if we run the following code:
 ```java
 public static void main(String[] args) {
@@ -799,14 +1019,87 @@ public static void main(String[] args) {
 }
 ```
 
+  > It will print `A` and the will thrown the runtime exception `ConcurrentModificationException`
+
 ### Streams and Lambdas
 
 * What is a **Functional Interface** ?
+
+  > An Interface that contains exactly one abstract method is known as functional interface. It can hava any number of 
+  > default, static methods but can only have one abstract method. It can also declare methods of object class.
+  >
+  > Functional Interface is also known as Single Abstract Interfaces or SAM Interfaces. It is a new feature in Java,
+  > which helps to achieve functional programming approach.
+
+  [javaTpoint][61]
+
 * Can you please explain what is a **Predicate**, **Consumer**, **Function**, **Supplier** ?
+
+  > **Predicate**
+  > 
+  > Represents a predicate (boolean-valued function) of one argument.
+  > 
+  > This is a functional interface whose functional method is `test(Object)`.
+  > 
+  > **Consumer**
+  > 
+  > Represents an operation that **accepts a single input argument and return no result**. Unlike most other functional
+  > interfaces, `Consumer` is expected to operate via side-effects.
+  > 
+  > This is a functional interface whose functional method is `accept(Object)`.
+  > 
+  > **Function**
+  >
+  > Represents a function that accepts one argument and produces a result.
+  >
+  > This is a function interface whose function method is `apply(Object)`.
+  > 
+  > **Supplier**
+  >
+  > Represents a **supplier of resuls**.
+  >
+  > There is no requirement that a new or distinct result be returned each time the supplier is invoked.
+  >
+  > This is a functional interface whose functional method is `get()`.
+
+  [docs.oracle][62]
+  [docs.oracle][63]
+  [docs.oracle][64]
+  [docs.oracle][65]
+
 * What is the difference between a **Stream** and an **Iterator** ?
+
+  > 
+
+  [][66]
+
 * Using the `filter()` method write a method that returns only the positive numbers from a `List<Integer>`.
+
+  > ```java
+  > private static List<Integer> positiveNumbers(List<Integer> numbers) {
+  >  return numbers.stream()
+  >              .filter(e -> e > 0)
+  >              .collect(Collectors.toList());
+  > }
+  > ```
+
 * What is a `parallelStream()` ? How is different from a standard `stream()` ?
+
+  > Parallel streams divide the provided task into many and run them in different threads, utilizing multiple cores of
+  > the computer. On the other hand sequential streams work just like for-loop using single core. 
+
+  [LogicBig.com][67]
+
 * Find out the max element from a `List<Integer>` using the `reduce()` method.
+
+  > ```java
+  > private static List<Integer> positiveNumbers(List<Integer> numbers) {
+  >  return numbers.stream()
+  >              .filter(e -> e > 0)
+  >              .collect(Collectors.toList());
+  > }
+  > ``` 
+
 * Find out the sum of elements from a `List<Integer>` using the `reduce()` method.
 * What is the output if we run the following code:
 ```java
@@ -921,32 +1214,32 @@ injection* ?
 * You have to develop a *REST API* for a book store. This API needs to implement CRUD-like operations. How would you
  design the API ?
 
-| Operation | HTTP VERB | ENDPOINT |
-| --------- | --------- | -------- |
-| Add a book | | |
-| Remove a book | | |
-| List books with pagination | | |
-| Edit a book | | |
-| Get info for a book | | |
+| Operation                  | HTTP VERB | ENDPOINT |
+|----------------------------|-----------|----------|
+| Add a book                 |           |          |
+| Remove a book              |           |          |
+| List books with pagination |           |          |
+| Edit a book                |           |          |
+| Get info for a book        |           |          |
 
 ### SQL
 
 *Given the following SQL table:*
 
-| id | full_name | mng_id |
-| -- | --------- | ------ |
-| 100 | Patrick Read | 101 |
-| 101 | Bradley Hayes | `null` |
-| 102 | Kieran Bennett | 101 |
-| 103 | George Barnes | 101 |
-| 104 | Alex Griffiths | 102 |
-| 105 | Issac Jacobs | 102 |
-| 106 | Will Mack | 104 |
+| id  | full_name      | mng_id |
+|-----|----------------|--------|
+| 100 | Patrick Read   | 101    |
+| 101 | Bradley Hayes  | `null` |
+| 102 | Kieran Bennett | 101    |
+| 103 | George Barnes  | 101    |
+| 104 | Alex Griffiths | 102    |
+| 105 | Issac Jacobs   | 102    |
+| 106 | Will Mack      | 104    |
 
 *Write an SQL query that returns the following result:*
 
-| id | full_name | mng_full_name |
-| -- | --------- | ------------- |
+| id  | full_name    | mng_full_name |
+|-----|--------------|---------------|
 | 100 | Patrick Read | Bradley Hayes |
 | ... | ............ | ............. |
 
@@ -1076,3 +1369,29 @@ YES
 [38]: https://www.tutorialspoint.com/data_structures_algorithms/stack_algorithm.htm   "Data Structure and Algorithms - Stack"
 [39]: https://stackoverflow.com/a/8927360   "Sum of List<Integer> recursively"
 [40]: https://stackoverflow.com/a/2721557   "Why don't Java Generics support primitive types?"
+[41]: https://docs.oracle.com/javase/tutorial/java/generics/erasure.html   "Type Erasure"
+[42]: https://www.javatpoint.com/java-list   "Java List"
+[43]: https://www.javatpoint.com/java-map   "Java Map"
+[44]: https://www.javatpoint.com/data-structure-queue   "Queue"
+[45]: https://docs.oracle.com/javase/7/docs/api/java/util/Queue.html   "Interface Queue<E>"
+[46]: https://www.tutorialspoint.com/java/java_set_interface.htm   "Java - The Set Interface"
+[47]: https://www.programcreek.com/2011/07/java-equals-and-hashcode-contract/   "Java equals() and hashCode() Contract"
+[48]: https://javarevisited.blogspot.com/2016/01/how-does-java-hashmap-or-linkedhahsmap-handles.html   "How does Java HashMap or LinkedHahsMap handles collisions?"
+[49]: https://dzone.com/articles/performance-analysis-of-arraylist-and-linkedlist-i   "Performance Analysis of ArrayList and LinkedList in Java"
+[50]: https://www.tutorialspoint.com/Difference-between-ArrayList-and-CopyOnWriteArrayList-in-Java   "Difference between ArrayList and CopyOnWriteArrayList in Java"
+[51]: https://www.javatpoint.com/difference-between-arraylist-and-vector   "Difference between ArrayList and Vector"
+[52]: https://howtodoinjava.com/java/collections/arraylist/arraylist-vs-vector/   "Difference between ArrayList vs Vector in Java"
+[53]: https://www.geeksforgeeks.org/difference-hashmap-concurrenthashmap/   "Difference between HashMap and ConcurrentHashMap"
+[54]: https://docs.oracle.com/javase/7/docs/api/java/util/WeakHashMap.html   "Class WeakHashMap<K,V>"
+[55]: https://www.baeldung.com/java-weakhashmap   "Guide to WeakHashMap in Java"
+[56]: https://www.geeksforgeeks.org/hashmap-vs-weakhashmap-java/   "Hashmap vs WeakHashMap in Java"
+[57]: https://docs.oracle.com/javase/10/docs/api/java/util/Set.html   "Interface Set<E>"
+[58]: https://www.geeksforgeeks.org/difference-between-an-iterator-and-listiterator-in-java/   "Difference between an Iterator and ListIterator in Java"
+[59]: http://blog.codefx.org/java/immutable-collections-in-java/   "Immutable Collections In Java – Not Now, Not Ever"
+[60]: https://www.baeldung.com/java-ring-buffer   "https://www.baeldung.com/java-ring-buffer"
+[61]: https://www.javatpoint.com/java-8-functional-interfaces   "Java Functional Interfaces"
+[62]: https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html   "Interface Predicate<T>"
+[63]: https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html   "Interface Consumer<T>"
+[64]: https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html   "Interface Function<T,R>"
+[66]:    ""
+[67]: https://www.logicbig.com/tutorials/core-java-tutorial/java-util-stream/sequential-vs-parallel.html   "Java 8 Streams - Sequential vs Parallel streams"
